@@ -6,19 +6,26 @@ const STATE_SYMBOL = Symbol("state");
 
 class Carousel {
     constructor(config){
+
+        /*
+        * 构造中应该是property 构造后外部不可修改
+        * 这个this[Symbol] 就是this.xxx 只不过xxx可以为变量
+        * */
+
         this[PROPERTY_SYMBOL] = Object.create(null);
         this[ATTRIBUTE_SYMBOL] = Object.create(null);
         this[EVENT_SYMBOL] = Object.create(null);
         this[STATE_SYMBOL] = Object.create(null);
-        
+
         this.created();
     }
-// 将页面父元素加载进入，并将本组件定义的root挂载在父元素下方。
+
     appendTo(element){
         element.appendChild(this.root);
         this.mounted();
     }
 
+    // 这里用作创建DOM并
     created(){
         this.root = document.createElement("div");
         this.root.style.width = "300px";
@@ -39,10 +46,12 @@ class Carousel {
 
     }
 
-    
+
     log(){
         console.log("width:", this.width);
     }
+
+    // getXXX 和 setXXX的 应该是attribute 对外可读可写
     get width(){
         return this[PROPERTY_SYMBOL].width;
     }
