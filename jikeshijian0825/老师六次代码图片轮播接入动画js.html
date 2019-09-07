@@ -13,12 +13,14 @@
             /*transition:ease 1.5s;*/
         }
         </style>
-        <div id="container">
         
+        <div id="container">
+
         </div>
         <script src="gesture.js"></script>
         <script src="animation.js"></script>
         <script>
+            //数据参数
         let data = [
         "https://static001.geekbang.org/resource/image/bb/21/bb38fb7c1073eaee1755f81131f11d21.jpg",
         "https://static001.geekbang.org/resource/image/1b/21/1b809d9a2bdf3ecc481322d7c9223c21.jpg",
@@ -29,12 +31,15 @@
         class Carousel {
             constructor(container){
                 this._container = container;
+                // 使用 classList 是替代element.className作为空格分隔的字符串访问元素的类列表的一种方便的方法。
                 this._container.classList.add("carousel");
                 this._handler = null;
                 this.data = null;
+                //调用gesture.js里的方法，讲轮播框加载进去
                 enableGesture(this._container);
             }
             render(){
+                //解读传入的图片数组数据，并加载到下挂图片
                 let i = data.length;
                 for(let d of this.data) {
                     let e = document.createElement("img");
@@ -44,16 +49,18 @@
                     e.onclick = event => 
                         console.log(d);
                 }
+                //调用animation.js里的时间线
                 var tl = new Timeline;
-        
+        // 将下属图片子项区分
                 let children = Array.prototype.slice.call(container.children);
                 let position = 0;
                 let offsetTimeStart = 0 
+                // 预加载下一张图片，一个递归调用方法，供后面代码调用的方法
                 let nextPic = ()=>{
                     let nextPosition = position + 1;
                     
                     nextPosition = nextPosition % children.length;
-        
+        // 定义摆正的当前一张，预加载的下一张，通过位置数，加载。
                     let current = children[position],
                         next = children[nextPosition];
                     //把next摆到正确的位置
@@ -61,7 +68,7 @@
                     next.style.transform = `translate(${100 - 100 * nextPosition}%)`
                     
                     offsetTimeStart = Date.now();
-        
+        // 调用animation中方法，启动移动，当前图移动，下一图跟随移动
                     tl.addAnimation(new DOMElementStyleNumberAnimation(
                         current,
                         "transform",
@@ -76,6 +83,7 @@
                         1000, - 500 * nextPosition,
                         (v) => `translateX(${v}px)`
                     ));
+
                     tl.restart();
         
                     position = nextPosition;
@@ -133,10 +141,11 @@
                     }
                 }*/
                 let startTransform;
-        
+        // 添加三个监听事件
                 let offset = 0;
                 this._container.addEventListener("mousedown", event => {
                     //startTransform = - position * 500;
+                    // 点击，就调用animation时间线里的暂停
                     tl.pause();
         
                     let currentTime = Date.now();
@@ -146,9 +155,10 @@
                     } else {
                         offset = 0;
                     }
-        
+        // 取消settimeout的设置
                     clearTimeout(nextPicTimer);
                 });
+
                 this._container.addEventListener("pan", event => {
                     event.origin.preventDefault();
                     let current = children[position];
@@ -232,8 +242,11 @@
         
             }
         }
+        //将容器获取，并通过构造函数加载进入
         let carousel = new Carousel(document.getElementById("container"));
+        //将图片数组加载进入
         carousel.data = data;
+        // 开始执行
         carousel.render();
         
         </script>
