@@ -58,6 +58,11 @@ export default class Tab {
             this.contentContainer.children[i].style.height = "100%";
             this.contentContainer.children[i].style.display = "inline-block";
         }
+        for(let i = 0; i < this.headerContainer.children.length; i ++) {
+            this.headerContainer.children[i].style.width = "30%";
+            this.headerContainer.children[i].style.height = "10px";
+            this.headerContainer.children[i].style.display = "inline-block";
+        }
 
     }
 
@@ -65,6 +70,7 @@ export default class Tab {
     get children(){
         return this[PROPERTY_SYMBOL].children;
     }
+    // 获取style，并赋值
     getAttribute(name){
         if(name == "style") {
             return this.root.getAttribute("style");
