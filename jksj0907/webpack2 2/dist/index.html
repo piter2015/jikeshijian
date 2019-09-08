@@ -8,7 +8,7 @@
 <meta content="telephone=no,email=no" name="format-detection"/>
 
 <!--TODO:添加一个网页标题-->
-<title>tab</title>
+<title>tab037</title>
 
 <!--TODO:改成你想要的缩放比例-->
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
@@ -41,9 +41,11 @@ body {
     document.addEventListener("touchmove",function(e){ if(e.touches.length == 2) e.preventDefault(); }, {passive:false});
 
 </script>
-<script src="./bundle.js"></script>
+<!-- <script src="./bundle.js"></script> 太早了报错。可以放在body里，可以放在HTML最后面-->
 </head>
 <body>
+        <script src="./bundle.js"></script>
 </body>
 </html>
+<!-- <script src="./bundle.js"></script> -->
 

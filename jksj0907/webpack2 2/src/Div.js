@@ -25,7 +25,7 @@ export default class Div {
     created(){
         this.root = document.createElement("div");
         
-        // this[STATE_SYMBOL].h = 0;
+        this[STATE_SYMBOL].h = 0;
     }
     mounted(){
 
