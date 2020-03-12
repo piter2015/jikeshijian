@@ -20,6 +20,7 @@ def attrs(**kwds):
     def decorate(f):
         for k in kwds:
             setattr(f, k, kwds[k])
+            # 协议描述符。给函数增加字典方式的属性。
         return f
     return decorate
 
@@ -36,6 +37,7 @@ def mymethod(f):
 def accepts(*types):
     def check_accepts(f):
         assert len(types) == f.func_code.co_argcount
+        # 断言
         def new_f(*args, **kwds):
             for (a, t) in zip(args, types):
                 assert isinstance(a, t), \

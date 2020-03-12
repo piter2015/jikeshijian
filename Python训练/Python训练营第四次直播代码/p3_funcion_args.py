@@ -1,4 +1,9 @@
 # 被修饰函数带参数
+# 
+# 
+# 
+# 
+
 from time import ctime,sleep
 
 def outer(func):

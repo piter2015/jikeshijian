@@ -14,3 +14,8 @@ if __name__=='__main__':
     import timeit
     print(timeit.timeit("fibonacci(6)", setup="from __main__ import fibonacci"))
 
+# 使用记录时间
+# 不使用记录一个时间
+# 长期不适用的剔除内存，释放，
+# 提高效率
+# 内置装饰器

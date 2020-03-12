@@ -25,6 +25,9 @@ def outer_arg(bar):
 
 @outer_arg('foo_arg')
 def foo(a,b,c):
+    # 运行后，函数变为了inner
+    # 注释文档，也是inner
+    # “”“ ————doc———— ”“”
     return (a+b+c)
     
 print(foo.__name__)
@@ -36,6 +39,7 @@ from functools import wraps
  
 def requires_auth(func):
     @wraps(func)
+    # 保持原有名字，注释等。
     def auth_method(*args, **kwargs):
         if not auth:
             authenticate()
@@ -53,8 +57,10 @@ from functools import wraps
 def logit(logfile='out.log'):
     def logging_decorator(func):
         @wraps(func)
+        # 保证原有名字
         def wrapped_function(*args, **kwargs):
             log_string = func.__name__ + " was called"
+            # 将名字等保存进日志
             print(log_string)
             with open(logfile, 'a') as opened_file:
                 opened_file.write(log_string + '\n')
@@ -63,6 +69,7 @@ def logit(logfile='out.log'):
     return logging_decorator
  
 @logit()
+# 可以加参数，改变文件位置。
 def myfunc1():
     pass
  
