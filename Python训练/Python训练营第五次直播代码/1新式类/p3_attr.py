@@ -13,6 +13,7 @@ h1.name
 h2.name
 # 删除实例属性
 del h1.name
+# 删除属性后，再调用。报错
 
 # AttributeError
 # 访问不存在的属性
@@ -39,6 +40,8 @@ class Human(object):
 
 h1 = Human('Adam')
 h2 = Human('Eve')
+
+# 拦截任何属性，
 # __getattr__ 拦截任意属性
 # __getattribute__ 返回存在的属性，如果不存在抛出  AttributeError 异常，继续访问__getattr__函数
 # 可以根据原理改造 __getattribute__ 实现 __getattr__
@@ -46,3 +49,7 @@ h2 = Human('Eve')
 h1.fly
 
 
+# __getattr__
+# __getattribute__
+# __get__
+# @property

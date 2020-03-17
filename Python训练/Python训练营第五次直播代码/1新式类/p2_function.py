@@ -8,9 +8,17 @@ class Human(object):
     __fly = False
     
     # 使用__init__接收参数，思考不定参数处理
+    # 方法，接收参数
     def __init__(self, name):
         # self表示对象本身，约定俗成
         self.name = name
+
+
+# 取属性值，
+# 设置属性值
+# 实例化一个对象
+
+
 
 h1 = Human('Adam')
 h2 = Human('Eve')

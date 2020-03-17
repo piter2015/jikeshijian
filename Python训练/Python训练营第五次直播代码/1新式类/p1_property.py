@@ -1,3 +1,5 @@
+# 讲解属性
+
 # I have a dream
 class MyFirstClass:
     pass
@@ -34,17 +36,30 @@ man.live
 Human.live
 
 
+# 内置类型不能增加属性和方法
+# 自己定义的类，可以添加
+# 内置类型添加会报错typeerror
+setattr(list,"","")
+
 class Human2(object):
     # 人为约定不可修改
     _age = 0
 
     # 私有属性
+    # 私有属性，不能调用
     __fly = False
 
     # 魔术方法，不会自动改名
     # 如 __init__
 
-
+# __dict__可以找到私有属性
+# 私有属性是自动改名，来不让使用的机制。
+# 
 # 自动改名机制
 dir(Human2)
+
+
+# 类属性，在内存中有一份
+# 对象属性，可以有多份
+
 
