@@ -10,5 +10,15 @@ import scrapy
 
 class Week03Item(scrapy.Item):
     # define the fields for your item here like:
-    # name = scrapy.Field()
+    # 地区、语言、排行、电影分级、浏览次数、封面信息
+    movieName = scrapy.Field()
+    movieNameen=scrapy.Field()
+    link=scrapy.Field()
+    region=scrapy.Field()
+    language=scrapy.Field()
+    ranking=scrapy.Field()
+    classification=scrapy.Field()
+    browseTimes=scrapy.Field()
+    coverInfo=scrapy.Field()
+
     pass
